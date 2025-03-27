@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://ubmig4uncexa"]
+
+[ext_resource type="Script" uid="uid://cys63n7qkf00r" path="res://Escenas/knive.gd" id="1_cwj3i"]
+[ext_resource type="Texture2D" uid="uid://blopancncvrde" path="res://Animaciones/disparo/arm_projectile_glowing.png" id="1_ej7yp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwj3i"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avppb"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjbe2"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wead5"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(50, 100, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jcfg"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(150, 100, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15cr0"]
+atlas = ExtResource("1_ej7yp")
+region = Rect2(250, 100, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4mtds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwj3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avppb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjbe2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wead5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jcfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15cr0")
+}],
+"loop": true,
+"name": &"disparo",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihwpg"]
+size = Vector2(25, 11)
+
+[node name="knive" type="Area2D"]
+script = ExtResource("1_cwj3i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4mtds")
+animation = &"disparo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 12.5)
+shape = SubResource("RectangleShape2D_ihwpg")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
