@@ -1,0 +1,232 @@
+[gd_scene load_steps=35 format=3 uid="uid://bs2p1mda36cck"]
+
+[ext_resource type="Texture2D" uid="uid://c6qvxe1ic1y46" path="res://Animaciones/idle/tile000.png" id="1_ldnir"]
+[ext_resource type="Texture2D" uid="uid://bp2w2ye3ily8i" path="res://Animaciones/fall/_Fall.png" id="1_n5uw0"]
+[ext_resource type="Texture2D" uid="uid://h8g5jsl0jost" path="res://Animaciones/idle/tile001.png" id="2_n5uw0"]
+[ext_resource type="Texture2D" uid="uid://cypaoap25jpjn" path="res://Animaciones/idle/tile002.png" id="3_el7rh"]
+[ext_resource type="Texture2D" uid="uid://bvgb0o4adylv7" path="res://Animaciones/idle/tile003.png" id="4_kwk6x"]
+[ext_resource type="Texture2D" uid="uid://fh1bhcdikoit" path="res://Animaciones/idle/tile004.png" id="5_n4wb5"]
+[ext_resource type="Texture2D" uid="uid://cjjavhu1h7nmt" path="res://Animaciones/idle/tile005.png" id="6_5k7ue"]
+[ext_resource type="Texture2D" uid="uid://dhal6wa7fb776" path="res://Animaciones/idle/tile006.png" id="7_7c4hf"]
+[ext_resource type="Texture2D" uid="uid://c7vbowxwvwr1l" path="res://Animaciones/idle/tile007.png" id="8_fphui"]
+[ext_resource type="Texture2D" uid="uid://dalsfjsi7dqya" path="res://Animaciones/idle/tile008.png" id="9_k1qdr"]
+[ext_resource type="Texture2D" uid="uid://cdklc0bigtgdc" path="res://Animaciones/idle/tile009.png" id="10_eqqsu"]
+[ext_resource type="Texture2D" uid="uid://ba5af7v0ljg7m" path="res://Animaciones/jump/_Jump.png" id="11_5qs2r"]
+[ext_resource type="Texture2D" uid="uid://bmoh5n4hnsvgr" path="res://Animaciones/run/tile000.png" id="12_n2qbc"]
+[ext_resource type="Texture2D" uid="uid://blgr51qf26klq" path="res://Animaciones/run/tile001.png" id="13_33rbj"]
+[ext_resource type="Texture2D" uid="uid://brwyepklkgi2g" path="res://Animaciones/run/tile002.png" id="14_gxex2"]
+[ext_resource type="Texture2D" uid="uid://bmntclrdb3afj" path="res://Animaciones/run/tile003.png" id="15_jjd8s"]
+[ext_resource type="Texture2D" uid="uid://b2ew03u0y5e26" path="res://Animaciones/run/tile004.png" id="16_0k5x2"]
+[ext_resource type="Texture2D" uid="uid://g7iwp2ifirk7" path="res://Animaciones/run/tile005.png" id="17_qfbmi"]
+[ext_resource type="Texture2D" uid="uid://c8bbmkiyhr2qw" path="res://Animaciones/run/tile006.png" id="18_n3dtb"]
+[ext_resource type="Texture2D" uid="uid://c8fh4b8mk5lh8" path="res://Animaciones/run/tile007.png" id="19_k71e4"]
+[ext_resource type="Texture2D" uid="uid://bxmup3780v4an" path="res://Animaciones/run/tile008.png" id="20_ryatc"]
+[ext_resource type="Texture2D" uid="uid://cgqap3n2gf6ti" path="res://Animaciones/run/tile009.png" id="21_o6yh4"]
+
+[sub_resource type="GDScript" id="GDScript_ldnir"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		if velocity.y < 0:
+			$AnimatedSprite2D.play(\"jump\")
+		else:
+			$AnimatedSprite2D.play(\"fall\")
+	else:
+		if velocity.x == 0:
+			$AnimatedSprite2D.play(\"idle\")
+		else:
+			$AnimatedSprite2D.play(\"run\")
+	
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"left\", \"right\")
+	
+	if direction > 0:
+		$AnimatedSprite2D.scale.x = 1
+	elif direction < 0:
+		$AnimatedSprite2D.scale.x = -1
+	
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el7rh"]
+atlas = ExtResource("1_n5uw0")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwk6x"]
+atlas = ExtResource("1_n5uw0")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4wb5"]
+atlas = ExtResource("1_n5uw0")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1spbq"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eanj"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0t1p"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhiq3"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6p5v"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obf4v"]
+atlas = ExtResource("11_5qs2r")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxnvx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el7rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwk6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4wb5")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ldnir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n5uw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_el7rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kwk6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n4wb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5k7ue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7c4hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fphui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_k1qdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eqqsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1spbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eanj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0t1p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhiq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6p5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obf4v")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_n2qbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_33rbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_gxex2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jjd8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0k5x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qfbmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_n3dtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_k71e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ryatc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_o6yh4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynihy"]
+size = Vector2(17, 36)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_ldnir")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yxnvx")
+animation = &"fall"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, 22)
+shape = SubResource("RectangleShape2D_ynihy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2, 0)
+zoom = Vector2(2, 2)
