@@ -54,7 +54,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihwpg"]
-size = Vector2(25, 11)
+size = Vector2(20, 11)
 
 [node name="knive" type="Area2D"]
 script = ExtResource("1_cwj3i")
@@ -64,9 +64,10 @@ sprite_frames = SubResource("SpriteFrames_4mtds")
 animation = &"disparo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 12.5)
+position = Vector2(-4, 12.5)
 shape = SubResource("RectangleShape2D_ihwpg")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

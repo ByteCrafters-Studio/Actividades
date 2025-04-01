@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3tx1u2wf18rs"]
+
+[ext_resource type="Script" uid="uid://d3h1fyyqy3jil" path="res://character_body_2d.gd" id="1_yj12m"]
+[ext_resource type="Texture2D" uid="uid://bmeh27wukuacr" path="res://Animaciones/mounstro/Character_sheet.png" id="2_40vke"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tljeb"]
+atlas = ExtResource("2_40vke")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18e16"]
+atlas = ExtResource("2_40vke")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg5b2"]
+atlas = ExtResource("2_40vke")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpifq"]
+atlas = ExtResource("2_40vke")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vyso6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tljeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18e16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg5b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpifq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0v5c"]
+size = Vector2(34, 38)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_yj12m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vyso6")
+frame_progress = 0.990854
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3)
+shape = SubResource("RectangleShape2D_d0v5c")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

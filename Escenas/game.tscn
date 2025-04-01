@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://p2ekk2tsmlea"]
+[gd_scene load_steps=5 format=3 uid="uid://p2ekk2tsmlea"]
 
 [ext_resource type="PackedScene" uid="uid://bs2p1mda36cck" path="res://Escenas/player.tscn" id="1_0bm41"]
+[ext_resource type="PackedScene" uid="uid://b3tx1u2wf18rs" path="res://Escenas/enemy.tscn" id="2_obr3f"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_obr3f"]
 
@@ -23,7 +24,7 @@ position = Vector2(230, 135.5)
 shape = SubResource("RectangleShape2D_3418m")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(96, -53)
+position = Vector2(477, -54)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
 position = Vector2(231, 137)
@@ -33,3 +34,18 @@ texture = SubResource("PlaceholderTexture2D_obr3f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(230, 135.5)
 shape = SubResource("RectangleShape2D_3418m")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-477, -53)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(231, 137)
+scale = Vector2(479.25, 51.75)
+texture = SubResource("PlaceholderTexture2D_obr3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(230, 135.5)
+shape = SubResource("RectangleShape2D_3418m")
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_obr3f")]
+position = Vector2(163, 59)
