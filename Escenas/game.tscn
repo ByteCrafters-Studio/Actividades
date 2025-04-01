@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://p2ekk2tsmlea"]
+[gd_scene load_steps=6 format=3 uid="uid://p2ekk2tsmlea"]
 
 [ext_resource type="PackedScene" uid="uid://bs2p1mda36cck" path="res://Escenas/player.tscn" id="1_0bm41"]
 [ext_resource type="PackedScene" uid="uid://b3tx1u2wf18rs" path="res://Escenas/enemy.tscn" id="2_obr3f"]
+[ext_resource type="PackedScene" uid="uid://dbnvglqlcvyc6" path="res://Escenas/power_up.tscn" id="3_3418m"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_obr3f"]
 
@@ -47,5 +48,11 @@ texture = SubResource("PlaceholderTexture2D_obr3f")
 position = Vector2(230, 135.5)
 shape = SubResource("RectangleShape2D_3418m")
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_obr3f")]
+[node name="CharacterBody2D2" parent="." groups=["enemy"] instance=ExtResource("2_obr3f")]
 position = Vector2(163, 59)
+
+[node name="CharacterBody2D3" parent="." groups=["enemy"] instance=ExtResource("2_obr3f")]
+position = Vector2(103, 6)
+
+[node name="Power-up" parent="." instance=ExtResource("3_3418m")]
+position = Vector2(-104, 40)

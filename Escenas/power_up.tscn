@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://dbnvglqlcvyc6"]
+
+[ext_resource type="Script" uid="uid://dmwfucmj6v6ww" path="res://Escenas/power_up.gd" id="1_bhdqf"]
+[ext_resource type="Texture2D" uid="uid://cyvdmibywvgqa" path="res://Animaciones/power-up/Pocima de Velocidad.png" id="1_kwaej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhdqf"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ihoq"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjk1t"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1wvc"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54vbs"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs0hq"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cueh3"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7gal"]
+atlas = ExtResource("1_kwaej")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s802s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhdqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ihoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjk1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1wvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54vbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs0hq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cueh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7gal")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wcs1"]
+size = Vector2(16, 18)
+
+[node name="Power-up" type="Area2D"]
+script = ExtResource("1_bhdqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_s802s")
+frame = 1
+frame_progress = 0.181054
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4wcs1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
